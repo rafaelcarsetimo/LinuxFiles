@@ -1,0 +1,27 @@
+# Configurar interfaces físicas
+ip link set eno1np0 up
+ip link set dev eno1np0 mtu 9000
+ip addr add 10.100.100.112/24 dev eno1np0
+#ip link set eno2np1 up
+#ip link set dev eno2np1 mtu 9000
+#ip addr add 10.100.100.114/24 dev eno2np1
+#ip link set eno3np2 up
+#ip link set dev eno3np2 mtu 9000
+#ip addr add 10.100.100.116/24 dev eno3np2
+#ip link set eno4np3 up
+#ip link set dev eno4np3 mtu 9000
+#ip addr add 10.100.100.118/24 dev eno4np3
+
+# Configurar interface de gerenciamento
+ip link add link eno1np0 name eno1np0.600 type vlan id 600
+ip addr add 10.204.1.115/16 dev eno1np0.600
+ip link set dev eno1np0.600 up
+ip route add default via 10.204.0.1 dev eno1np0.600
+
+echo "nameserver > /etc/resolv.conf"
+
+mkdir /run/lock
+
+apt-get update
+apt-get install libisns0* libopeniscsiusr* open-iscsi multipath* -y
+
