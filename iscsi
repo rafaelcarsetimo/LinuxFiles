@@ -1,0 +1,7 @@
+echo "InitiatorName=iqn.2023-01.com.netfivelab:sr630-01" > /etc/iscsi/initiatorname.iscsi
+
+iscsiadm -m discovery -t sendtargets -p 10.100.100.10 -I eno1np0
+iscsiadm -m discovery -t sendtargets -p 10.100.100.11 -I eno2np1
+iscsiadm -m discovery -t sendtargets -p 10.100.100.12 -I eno3np2
+iscsiadm -m discovery -t sendtargets -p 10.100.100.13 -I eno4np3
+
